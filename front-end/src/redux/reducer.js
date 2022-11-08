@@ -15,7 +15,7 @@ export const getTasks = createAsyncThunk('Tasks/getTasks', async () => {
 
 export const addTodo = createAsyncThunk('Tasks/addTodo', async () =>{
     return axios.post('http://localhost:9000/addTodo', {
-        Tasks : "Coding"
+        task: 'Coding'
     })
     .catch((err) => {
         return err.data.message
