@@ -11,13 +11,13 @@ let tasks = [
         task: 'Do Something',
     },
     {
-        task: 'Do Something',
+        task: 'Pay th bills',
     },
     {
-        task: 'Do Something',
+        task: 'Hang out w/Fam',
     },
     {
-        task: 'Do Something',
+        task: 'Rest',
     }
 ]
 
@@ -25,10 +25,14 @@ app.get('/SendTasksList', (req, res)=>{
     res.send(tasks)
 })
 
-
-app.post('/addTodo', (req, res) => {
+app.post('/addTodoToTasks', (req, res)=> {
     const task = req.body
-    console.log(task)
     tasks.push(task)
     res.send(tasks)
+})
+
+app.delete('/deleteTask/:task' , (req, res) =>{
+    const task_to_delete = req.params.task
+   const filtered_tasks =  tasks.filter((element) => element.task != task_to_delete)
+    res.send(filtered_tasks)
 })

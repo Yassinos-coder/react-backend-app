@@ -12,14 +12,19 @@ export const getTasks = createAsyncThunk('Tasks/getTasks', async () => {
     } )
 })
 
+export const addTodo = createAsyncThunk('Tasks/addTodo', async ()=>{
+    return axios.post('http://localhost:9000/addTodoToTasks' , {
+        task : 'Coding'
+    })
+    .then(res =>{return res.data})
+    .catch(err => {return err.data.message})
+})
 
-export const addTodo = createAsyncThunk('Tasks/addTodo', async () =>{
-    return axios.post('http://localhost:9000/addTodo', {
-        task: 'Coding'
-    })
-    .catch((err) => {
-        return err.data.message
-    })
+export const deleteTodo = createAsyncThunk('Tasks/deleteTodo', async ()=> {
+    let task= "Do Something"
+    return axios.delete(`http://localhost:9000/deleteTask/${task}`)
+    .then(res => {return res.data})
+    .catch(err => {return err.data.message})
 })
 
 const TaskSlice = createSlice({
@@ -32,8 +37,8 @@ const TaskSlice = createSlice({
     reducers:{}, 
     extraReducers : {
         [getTasks.fulfilled]: (state, action ) => {
-            state.tasks = action.payload;
-            state.status = "success";
+            state.tasks = action.payload
+            state.status = "success"
         },
         [getTasks.rejected] : ( state, action ) => {
             state.Error = action.payload
@@ -42,18 +47,30 @@ const TaskSlice = createSlice({
         [getTasks.pending] : ( state ) =>{
             state.status = "pending"
         },
-        // Below Code for adding todo 
-        [addTodo.fulfilled]: (state, action ) => {
-            state.tasks = action.payload;
-            state.status = "success";
+        // Below Code for adding todo
+        [addTodo.fulfilled]: (state, action) => {
+            state.tasks = action.payload
+            state.status = "Accepted"
+        }, 
+        [addTodo.pending]: (state) => {
+            state.status = 'Pending...'
         },
-        [addTodo.rejected] : ( state, action ) => {
+        [addTodo.rejected]: (state, action) => {
             state.Error = action.payload
             state.status = "Rejected"
         },
-        [addTodo.pending] : ( state ) =>{
-            state.status = "pending"
-        }
+        // Below Code for deleting Task 
+        [deleteTodo.fulfilled]: (state, action) => {
+            state.tasks = action.payload
+            state.status = "Accepted"
+        }, 
+        [deleteTodo.pending]: (state) => {
+            state.status = 'Pending...'
+        },
+        [deleteTodo.rejected]: (state, action) => {
+            state.Error = action.payload
+            state.status = "Rejected"
+        },
     }
 })
 

@@ -1,5 +1,5 @@
 import "./App.css";
-import { getTasks, addTodo } from "./redux/reducer";
+import { getTasks, addTodo, deleteTodo } from "./redux/reducer";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 function App() {
@@ -14,9 +14,10 @@ function App() {
   return (
     <>
       <div className="app">
-        <div>
-          <button onClick={()=>dispatch(addTodo())}>Add ToDo</button>
-        </div>
+        <button onClick={()=> {dispatch(addTodo())}}>Add Todo</button>
+        <button onClick={()=> dispatch(deleteTodo()) }>Delete this task</button>
+
+        
         {
           Tasks.map(task => (
             <>
