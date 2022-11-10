@@ -12,17 +12,14 @@ export const getTasks = createAsyncThunk('Tasks/getTasks', async () => {
     } )
 })
 
-export const addTodo = createAsyncThunk('Tasks/addTodo', async ()=>{
-    return axios.post('http://localhost:9000/addTodoToTasks' , {
-        task : 'Coding'
-    })
+export const addTodo = createAsyncThunk('Tasks/addTodo', async ({Task})=>{
+    return axios.post('http://localhost:9000/addTodoToTasks' , Task)
     .then(res =>{return res.data})
     .catch(err => {return err.data.message})
 })
 
-export const deleteTodo = createAsyncThunk('Tasks/deleteTodo', async ()=> {
-    let task= "Do Something"
-    return axios.delete(`http://localhost:9000/deleteTask/${task}`)
+export const deleteTodo = createAsyncThunk('Tasks/deleteTodo', async ({taskToDelete})=> {
+    return axios.delete(`http://localhost:9000/deleteTask/${taskToDelete}`)
     .then(res => {return res.data})
     .catch(err => {return err.data.message})
 })

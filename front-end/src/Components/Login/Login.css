@@ -1,0 +1,27 @@
+.UsersBox {
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+
+.Signin-Box {
+    position: relative;
+    width: 27%;
+    top: 72px;
+}
+
+.Signup-Box {
+    position: relative;
+    width: 44%;
+    display: inline-grid;
+    top: -32px;
+    left: 56%;
+}
+
+.inputs {
+    width: 75%;
+}
+
+.btn-signup {
+    width: 58%;
+}

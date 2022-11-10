@@ -5,16 +5,12 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.listen(9000, ()=> console.log('Server is up and running on port 9000'))
-
 let tasks = [
     {
         task: 'Do Something',
     },
     {
         task: 'Pay th bills',
-    },
-    {
-        task: 'Hang out w/Fam',
     },
     {
         task: 'Rest',
@@ -33,6 +29,10 @@ app.post('/addTodoToTasks', (req, res)=> {
 
 app.delete('/deleteTask/:task' , (req, res) =>{
     const task_to_delete = req.params.task
-   const filtered_tasks =  tasks.filter((element) => element.task != task_to_delete)
-    res.send(filtered_tasks)
+    const filtered_tasks = tasks.filter((element) => element.task !== task_to_delete)
+    tasks = filtered_tasks
+    res.send(tasks)
+    console.log(filtered_tasks)
+    console.log(tasks)
+
 })
