@@ -3,6 +3,7 @@ import UserTasks from "./Components/userTasks";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import Home from "./Components/Home";
+import ProtectedRoutes from "./Components/ProtectedRoutes";
 function App() {
   return (
     <>
@@ -11,7 +12,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>}></Route>
             <Route path="/Login" element={<Login />} />
-            <Route path="/UserTasks" element={<UserTasks />} />
+            <Route  element={<ProtectedRoutes/>}>
+              <Route path="/UserTasks" element={<UserTasks />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </div>

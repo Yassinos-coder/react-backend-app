@@ -1,21 +1,28 @@
 import React from "react";
 import "./Login.css";
-import { useNavigate } from "react-router-dom";
 import Signups from "../../modals/Signups";
+import {useDispatch } from "react-redux";
+import { loggedIN } from "../../redux/loggedin-reducer";
+
+
+
 const Login = () => {
-  const navigate = useNavigate()
+
+  const dispatch = useDispatch()
+
   const uname = React.createRef();
   const passwd = React.createRef();
   const signup = (new Signups())
+
   const isAuth = () => {
-    if (uname === "yassinosMa" && passwd === "1234") {
-      return true;
+    if (uname === "yassinos" && passwd === "123@58") {
+      return true
     } else {
-      return false;
+      return false
     }
-  };
+  }
   const reRouteToTask = ()=> {
-    (isAuth === true) ? (navigate('/UserTasks')) : alert('Wrong Password Biitch !')
+    (isAuth === true) ? alert('noyaaaaaah') : dispatch(loggedIN(true))
   }
 
   return (
@@ -45,9 +52,7 @@ const Login = () => {
             placeholder="Enter your password"
           />
           <button
-            onChange={() => {
-              isAuth()
-            }}
+           onChange={()=>{isAuth()}}
             onClick={()=>{reRouteToTask()}}
             type="submit"
             className="btn-singin"
