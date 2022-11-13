@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Login.css";
 import Signups from "../../modals/Signups";
-import {useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import { loggedIN } from "../../redux/loggedin-reducer";
+import {  useNavigate } from "react-router-dom";
+import { createAccount } from "../../redux/reducer";
 
 
 
@@ -12,17 +14,20 @@ const Login = () => {
 
   const uname = React.createRef();
   const passwd = React.createRef();
-  const signup = (new Signups())
+  const navigate = useNavigate();
+  const [signup, setSignups] = useState(new Signups())
 
   const isAuth = () => {
-    if (uname === "yassinos" && passwd === "123@58") {
-      return true
+    if (uname.current.value === "yassinos" && passwd.current.value === "yassinos") {
+      dispatch(loggedIN(true))
+      navigate("/UserTasks")
     } else {
-      return false
+      alert('noyaaaaaah')
     }
   }
-  const reRouteToTask = ()=> {
-    (isAuth === true) ? alert('noyaaaaaah') : dispatch(loggedIN(true))
+
+  const SignUp = () => {
+    dispatch(createAccount({accountInfo: signup}))
   }
 
   return (
@@ -52,8 +57,7 @@ const Login = () => {
             placeholder="Enter your password"
           />
           <button
-           onChange={()=>{isAuth()}}
-            onClick={()=>{reRouteToTask()}}
+            onClick={()=>{isAuth()}}
             type="submit"
             className="btn-singin"
           >
@@ -66,6 +70,7 @@ const Login = () => {
             Firstname
           </label>
           <input
+            onChange={(e) => {setSignups({...signup, Firstname: e.target.value})}}
             className="inputs"
             type="text"
             name="fname"
@@ -75,6 +80,7 @@ const Login = () => {
             Lastname
           </label>
           <input
+            onChange={(e) => {setSignups({...signup, Lastname: e.target.value})}}
             className="inputs"
             type="text"
             name="lname"
@@ -84,6 +90,7 @@ const Login = () => {
             E-mail
           </label>
           <input
+          onChange={(e) => {setSignups({...signup, Email: e.target.value})}}
             className="inputs"
             type="text"
             name="email"
@@ -94,6 +101,7 @@ const Login = () => {
             Password
           </label>
           <input
+            onChange={(e) => {setSignups({...signup, Password: e.target.value})}}
             className="inputs"
             type="password"
             name="passwd"
@@ -108,7 +116,9 @@ const Login = () => {
             name="passwd-cm"
             placeholder="re-enter your password"
           />
-          <button type="submit" className="btn-signup">
+          <button  
+          onClick={()=>{SignUp()}}
+          type="submit" className="btn-signup">
             SignUp
           </button>
         </div>

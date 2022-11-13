@@ -5,6 +5,10 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.listen(9000, ()=> console.log('Server is up and running on port 9000'))
+
+
+let accounts = []
+
 let tasks = [
     {
         task: 'Do Something',
@@ -34,5 +38,10 @@ app.delete('/deleteTask/:task' , (req, res) =>{
     res.send(tasks)
     console.log(filtered_tasks)
     console.log(tasks)
+})
 
+app.post('/AddAccount' ,(req,res) => {
+    const account_data = req.body
+    accounts.push(account_data)
+    console.log(accounts)
 })

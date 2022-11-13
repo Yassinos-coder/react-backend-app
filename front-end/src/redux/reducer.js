@@ -24,6 +24,12 @@ export const deleteTodo = createAsyncThunk('Tasks/deleteTodo', async ({taskToDel
     .catch(err => {return err.data.message})
 })
 
+export const createAccount = createAsyncThunk('accounts/createAccount', async({accountInfo}) =>{
+    return axios.post('http://localhost:9000/AddAccount', accountInfo)
+    .then(res => {return res.data})
+    .catch(err => {return err.data.message})
+})
+
 const TaskSlice = createSlice({
     name : "Tasks", 
     initialState : {
@@ -68,6 +74,8 @@ const TaskSlice = createSlice({
             state.Error = action.payload
             state.status = "Rejected"
         },
+        // Create Account API 
+
     }
 })
 
