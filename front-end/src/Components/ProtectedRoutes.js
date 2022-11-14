@@ -3,7 +3,10 @@ import { useSelector } from "react-redux";
 
 const ProtectedRoutes = () => {
     let auth = useSelector((state) => state.Auth.islogged)
-    return (auth === true ? <Outlet/> : <Navigate to='/Login' />)
+    if (localStorage.logged_in === true) {
+        auth = true
+    }
+    return ( auth === true ? <Outlet/> : <Navigate to='/Login' />)
 }
 
 export default ProtectedRoutes

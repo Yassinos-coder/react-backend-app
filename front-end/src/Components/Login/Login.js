@@ -16,13 +16,15 @@ const Login = () => {
   const passwd = React.createRef();
   const navigate = useNavigate();
   const [signup, setSignups] = useState(new Signups())
+  localStorage.setItem('logged_in', 'false')
 
   const isAuth = () => {
     if (uname.current.value === "yassinos" && passwd.current.value === "yassinos") {
       dispatch(loggedIN(true))
+      localStorage.logged_in = true
       navigate("/UserTasks")
     } else {
-      alert('noyaaaaaah')
+      alert('Wrong Credentials !')
     }
   }
 
