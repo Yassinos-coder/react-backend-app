@@ -1,7 +1,7 @@
 import React from "react";
 import "./Login.css";
 import { loggedIN } from "../../redux/loggedin-reducer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const Login = () => {
       localStorage.logged_in = true;
       navigate("/UserTasks");
     } else {
-      alert("Wrong Credentials !");
+      return false
     }
   };
 
@@ -31,6 +31,7 @@ const Login = () => {
         {/* Signin Box */}
         <form>
           <div className="Signin-Box">
+            <p style={(!isAuth)? {backgroundColor:"red", color:"black", visibility:'visible'}:{visibility:"hidden"} }>Inputs Can't be empty</p>
             <label className="labels" htmlFor="uname">
               Username
             </label>
@@ -54,15 +55,21 @@ const Login = () => {
               ref={passwd}
               placeholder="Enter your password"
             />
+            <div className="no-acct">
+            <Link className="a-crt-acct" to="/Signup">
+              <p>Create an account</p>
+            </Link>
+            </div>
             <button
               onClick={() => {
                 isAuth();
               }}
               type="submit"
-              className="btn-singin"
+              className="btn-signin"
             >
               SignIn
             </button>
+
           </div>
         </form>
       </div>

@@ -5,14 +5,41 @@
     margin-top: 5%;
 }
 
+.Signin-Box {
+    padding-top: 2%;
+}
+
 .inputs {
     display: block;
     width: 55%;
-    margin-left: 2%;
+    height: 30px;
+    margin-left: 20%;
+    margin-top: 1%;
+    font-size: 17px;
 }
 
 .labels {
     font-size: 20px;
-    
-    margin-left: 2%;
+    margin-left: 20%;
+}
+
+.btn-signin {
+    padding: 4px 36px;
+    margin-left: 38%;
+    margin-top: -1%;
+    margin-bottom: 2%;
+}
+
+.no-acct {
+    margin-left: 55%;
+    margin-top: -2%;
+    font-size: 15px;
+}
+.a-crt-acct {
+    color: black;
+    text-decoration: none;
+}
+
+.a-crt-acct:hover {
+    color: blue;
 }

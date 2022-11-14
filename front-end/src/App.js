@@ -5,6 +5,7 @@ import Login from "./Components/Login/Login";
 import Home from "./Components/Home";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
 import { useSelector } from "react-redux";
+import Signup from "./Components/Signup/Signup";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route  element={<ProtectedRoutes/>}>
               <Route path="/UserTasks" element={<UserTasks />}/>
             </Route>
+            <Route path="/Signup" element={<Signup/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>

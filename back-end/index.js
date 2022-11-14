@@ -2,9 +2,11 @@ const express = require("express")
 const cors = require("cors")
 const mongoose  = require("mongoose")
 const app = express()
+const UserRouter = require('./APIs/user')
 
 app.use(express.json())
 app.use(cors())
+app.use(UserRouter)
 app.listen(9000, ()=> console.log('Server is up and running on port 9000'))
 mongoose.connect('mongodb://localhost/Todos').then(console.log('Connection Granted'))
 
