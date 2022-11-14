@@ -35,7 +35,6 @@ const Login = () => {
               <h1>Login To Your Account</h1>
             </div>
             <h3 className="today-date">{new Date().toLocaleString("fr-MA", {day : '2-digit', month: 'numeric',year:'numeric'})}</h3>
-            <p style={(!isAuth)? {backgroundColor:"red", color:"black", visibility:'visible'}:{visibility:"hidden"} }>Inputs Can't be empty</p>
             <label className="labels" htmlFor="uname">
               Username
             </label>
