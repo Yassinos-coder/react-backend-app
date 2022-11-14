@@ -4,7 +4,12 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import Home from "./Components/Home";
 import ProtectedRoutes from "./Components/ProtectedRoutes";
+import { useSelector } from "react-redux";
+
+
 function App() {
+  const redux_state = useSelector((state) => state.Auth.islogged)
+  localStorage.setItem('logged_in', redux_state)
   return (
     <>
       <div className="app">

@@ -1,27 +1,18 @@
 .UsersBox {
-    width: 80%;
-    display: block;
+    background-color: antiquewhite;
     margin: auto;
-}
-
-.Signin-Box {
-    position: relative;
-    width: 27%;
-    top: 72px;
-}
-
-.Signup-Box {
-    position: relative;
-    width: 44%;
-    display: inline-grid;
-    top: -32px;
-    left: 56%;
+    max-width: 500px;
+    margin-top: 5%;
 }
 
 .inputs {
-    width: 75%;
+    display: block;
+    width: 55%;
+    margin-left: 2%;
 }
 
-.btn-signup {
-    width: 58%;
+.labels {
+    font-size: 20px;
+    
+    margin-left: 2%;
 }

@@ -1,11 +1,12 @@
 const express = require("express")
 const cors = require("cors")
+const mongoose  = require("mongoose")
 const app = express()
 
 app.use(express.json())
 app.use(cors())
 app.listen(9000, ()=> console.log('Server is up and running on port 9000'))
-
+mongoose.connect('mongodb://localhost/Todos').then(console.log('Connection Granted'))
 
 let accounts = []
 
