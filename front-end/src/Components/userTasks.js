@@ -1,35 +1,46 @@
-import React, {useState, useEffect} from 'react'
-import { getTasks, addTodo, deleteTodo } from '../redux/reducer'
-import { useDispatch, useSelector } from 'react-redux'
-import Task from '../modals/Task'
-import { useNavigate, Link } from 'react-router-dom'
-import { loggedIN } from '../redux/loggedin-reducer'
+import React, { useState, useEffect } from "react";
+import { getTasks, addTodo, deleteTodo } from "../redux/reducer";
+import { useDispatch, useSelector } from "react-redux";
+import Task from "../modals/Task";
+import { useNavigate, Link } from "react-router-dom";
+import { loggedIN } from "../redux/loggedin-reducer";
 const UserTasks = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getTasks());
+  }, [dispatch]);
 
-    useEffect(() => {
-      dispatch(getTasks());
-    }, [dispatch]);
-  
-    const Tasks = useSelector((state) => state.Tasks.tasks);
-    const [newTask, setnewTask] = useState(new Task());
-    const signout = ()=> {
-      localStorage.logged_in = false
-      dispatch(loggedIN(false))
-      navigate('/')
-    }
-    return (
-      <>
-        <div className="userTasks">
-          <div className="Signout">
-            <Link to="/">
-              <button className='btn-home' type='submit'>Home</button>
-            </Link>
-            <button className='btn-signout' type='submit' onClick={()=>{ signout() }}>Sign Out</button>
-          </div>
+  const Tasks = useSelector((state) => state.Tasks.tasks);
+  const [newTask, setnewTask] = useState(new Task());
+  const signout = () => {
+    localStorage.logged_in = false;
+    dispatch(loggedIN(false));
+    navigate("/");
+  };
+  return (
+    <>
+      <div className="userTasks">
+        <div className="Signout">
+          <Link to="/">
+            <button className="btn-home" type="submit">
+              Home
+            </button>
+          </Link>
+          <button
+            className="btn-signout"
+            type="submit"
+            onClick={() => {
+              signout();
+            }}
+          >
+            Sign Out
+          </button>
+        </div>
+        <div className="TaskBox">
           <input
+            className="AddTodo"
             type="text"
             placeholder="Enter a new task to add"
             onChange={(e) => {
@@ -37,6 +48,7 @@ const UserTasks = () => {
             }}
           />
           <button
+            className="btn-add-todo"
             type="button"
             onClick={() => {
               dispatch(addTodo({ Task: newTask }));
@@ -44,23 +56,28 @@ const UserTasks = () => {
           >
             Add Todo
           </button>
-  
-          {Tasks.map((task) => (
+
+          {Tasks.map((task, index) => (
             <>
-              <h3>{task.task}</h3>
-              <button
-                type="button"
-                onClick={() => {
-                  dispatch(deleteTodo({ taskToDelete: task.task }));
-                }}
-              >
-                Delete Task
-              </button>
+              <div className="tasks">
+                <h3 key={index}> {task.task} |
+                <button
+                className="btn-delete-task"
+                  type="button"
+                  onClick={() => {
+                    dispatch(deleteTodo({ taskToDelete: task.task }));
+                  }}
+                >
+                  Delete Task
+                </button>
+                </h3>
+              </div>
             </>
           ))}
         </div>
-      </>
-    );
-}
+      </div>
+    </>
+  );
+};
 
-export default UserTasks
+export default UserTasks;

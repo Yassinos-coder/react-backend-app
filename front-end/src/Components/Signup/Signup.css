@@ -1,3 +1,40 @@
 .signup-box {
-    
+    background-color: antiquewhite;
+    margin: auto;
+    margin-top: 5%;
+    max-width: 700px;
+    border-radius: 18px;
+}
+
+.btn-signup {
+    padding: 7px 30px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: none;
+    background-color: aqua;
+    margin-left: 40%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.title {
+    padding-top: 2%;
+}
+
+.title h1 {
+    text-align: center;
+}
+
+.link-back {
+    margin-top: -1%;
+    margin-left: 60%;
+}
+.link-back a {
+    text-decoration: none;
+    color: black;
+}
+
+.link-back a:hover {
+    text-decoration: none;
+    color: blue;
 }

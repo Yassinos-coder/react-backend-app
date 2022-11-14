@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+body  {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
 .Home {
     background-color: antiquewhite;
     margin: auto;
     width: 70%;
     height: 250px;
     max-width: 640px;
+    margin-top: 9%;
 }
 
 .Home h2 {
@@ -21,4 +28,103 @@
     padding: 15px 20px;
     margin-left: 8%;
     font-size: 18px;
+}
+
+
+
+.inputs {
+    display: block;
+    width: 55%;
+    height: 30px;
+    margin-left: 20%;
+    margin-top: 1%;
+    font-size: 17px;
+    border-radius: 8px;
+    border: none;
+    outline-color: beige;
+    padding-left: 1%;
+}
+
+.labels {
+    font-size: 20px;
+    margin-left: 20%;
+}
+
+/*  UserTasks Component   */
+
+.userTasks {
+    margin: auto;
+    background-color: antiquewhite;
+    max-width: 700px;
+    margin-top: 10%;
+    height: 550px;
+    border-radius: 10px;
+}
+
+.TaskBox {
+    background-color: aliceblue;
+    width: 85%;
+    margin: auto;
+    margin-top: 5%;
+    height: 420px;
+    border-radius: 10px;
+}
+
+.AddTodo {
+    margin-left: 17%;
+    font-size: 17px;
+    border: none;
+    background-color: gainsboro;
+    height: 43px;
+    width: 50%;
+    border-radius: 8px;
+    margin-top: 3%;
+    outline-color: aliceblue;
+    padding-left: 2%;
+}
+.btn-add-todo {
+    border: none;
+    border-radius: 8px;
+    font-size: 17px;
+    padding: 12.7px 25px;
+    margin-left: -3%;
+    background-color: gainsboro;
+}
+
+.tasks {
+    text-align: center;
+    display: inline;
+}
+
+.btn-delete-task {
+    background-color: gainsboro;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    margin-left: 1%;
+}
+
+.Signout {
+    background-color: beige;
+    margin-left: 25%;
+    padding-top: 3%;
+    width: 50%;
+}
+
+.btn-signout {
+    padding: 9px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: aqua;
+    font-size: 16px;
+    margin-left: 14%;
+}
+
+.btn-home {
+    padding: 9px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: aqua;
+    font-size: 16px;
+    margin-left: 20%;
 }

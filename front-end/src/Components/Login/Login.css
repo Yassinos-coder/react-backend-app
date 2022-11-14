@@ -5,29 +5,16 @@
     margin-top: 5%;
 }
 
-.Signin-Box {
-    padding-top: 2%;
-}
-
-.inputs {
-    display: block;
-    width: 55%;
-    height: 30px;
-    margin-left: 20%;
-    margin-top: 1%;
-    font-size: 17px;
-}
-
-.labels {
-    font-size: 20px;
-    margin-left: 20%;
-}
 
 .btn-signin {
-    padding: 4px 36px;
     margin-left: 38%;
     margin-top: -1%;
     margin-bottom: 2%;
+    padding: 7px 30px;
+    font-size: 17px;
+    border-radius: 5px;
+    border: none;
+    background-color: aqua;
 }
 
 .no-acct {
@@ -42,4 +29,8 @@
 
 .a-crt-acct:hover {
     color: blue;
+}
+
+.today-date {
+    text-align: center;
 }
