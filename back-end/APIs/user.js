@@ -2,20 +2,30 @@ const {Router} = require('express')
 const UserModel = require('../modules/Users')
 
 const router = Router ()
+let userDoesExists;
 
+router.post('/AddAccount' , async (req,res) => {
+    let account_data = req.body 
+    try{
+    let result = await UserModel.findOne({username: account_data.Username})
+    if (result) {
+        userDoesExists=true
+        res.send(userDoesExists)
+        console.log('User Already Exists')
+    } else {
+        const newUser = new UserModel(
+            {
+                firstname: account_data.Firstname,
+                lastname: account_data.Lastname,
+                username: account_data.Username,
+                email: account_data.Email,
+                passwd: account_data.Password,
 
-
-
-router.post('/AddAccount' ,(req,res) => {
-    const account_data = req.body
-    const User = new UserModel({
-        username: account_data.Username, 
-        passwd: account_data.Password,
-        firstname: account_data.Firstname,
-        lastname: account_data.Lastname,
-        email: account_data.Email
-    })
-    User.save()
+            }
+        )
+        newUser.save()
+    }
+    }catch(err) {console.error(err.message)}
 })
 
 module.exports= router

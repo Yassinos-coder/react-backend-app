@@ -10,8 +10,10 @@ const Signup = () => {
   const cm_passwd_input = React.createRef()
   const [signup, setSignups] = useState(new Signups());
   const dispatch = useDispatch();
+
   const SignUp = () => {
     dispatch(createAccount({ accountInfo: signup }));
+
   };
 
   

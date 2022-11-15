@@ -1,4 +1,5 @@
 class Signups {
+  
   constructor(Firstname = "", Lastname = "", Username ='' ,Email = "", Password = "") {
     this.Firstname = Firstname
     this.Lastname = Lastname
