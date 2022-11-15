@@ -3,6 +3,7 @@ import "./Login.css";
 import { loggedIN } from "../../redux/loggedin-reducer";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 const Login = () => {
   const dispatch = useDispatch();
 
@@ -10,18 +11,23 @@ const Login = () => {
   const passwd = React.createRef();
   const navigate = useNavigate();
 
-  const isAuth = () => {
-    if (
-      uname.current.value === "yassinos" &&
-      passwd.current.value === "yassinos"
-    ) {
-      dispatch(loggedIN(true));
-      localStorage.logged_in = true;
-      navigate("/UserTasks");
-    } else {
-      return false
-    }
-  };
+
+  const Signin = ()=> {
+    let credentials = ({
+      uname:uname.current.value,
+      passwd: passwd.current.value
+    })
+    axios.post('http://localhost:9000/Signin', credentials).then((res) => {
+      if (res.data === true) {
+        dispatch(loggedIN(true));
+        localStorage.logged_in = true;
+        navigate("/UserTasks");
+      }else {
+        return false
+      }
+    }).catch(err=>{console.log(err.message)})
+  }
+
 
 
 
@@ -29,7 +35,6 @@ const Login = () => {
     <>
       <div className="UsersBox">
         {/* Signin Box */}
-        <form>
           <div className="Signin-Box">
             <div className="title">
               <h1>Login To Your Account</h1>
@@ -65,7 +70,7 @@ const Login = () => {
             </div>
             <button
               onClick={() => {
-                isAuth();
+                Signin();
               }}
               type="submit"
               className="btn-signin"
@@ -74,7 +79,6 @@ const Login = () => {
             </button>
 
           </div>
-        </form>
       </div>
     </>
   );

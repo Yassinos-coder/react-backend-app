@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios';
 
-
 export const getTasks = createAsyncThunk('Tasks/getTasks', async () => {
     return axios.get('http://localhost:9000/SendTasksList')
     .then((res) => {
@@ -28,6 +27,7 @@ export const createAccount = createAsyncThunk('accounts/createAccount', async({a
     return axios.post('http://localhost:9000/AddAccount', accountInfo)
     .then(res => {return res.data})
     .catch(err => {return err.data.message})
+
 })
 
 const TaskSlice = createSlice({

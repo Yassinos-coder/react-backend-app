@@ -28,4 +28,22 @@ router.post('/AddAccount' , async (req,res) => {
     }catch(err) {console.error(err.message)}
 })
 
+router.post('/Signin', async (req,res)=> {
+    let credentials = req.body
+    try {
+    let user_existence_result = await UserModel.findOne({username: credentials.uname},{passwd: credentials.passwd})
+    if (user_existence_result) {
+        res.send(true)
+        console.log('Access Granted')
+
+    } else {
+        res.send(false)
+        console.log('Access Rejected')
+    }
+    }catch(err) {
+        console.error(err.message)
+    }
+
+})
+
 module.exports= router
