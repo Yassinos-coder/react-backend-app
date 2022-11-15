@@ -8,7 +8,6 @@ const Logged = createSlice({
     reducers:{
         loggedIN : (state,action) => {
             state.islogged = action.payload
-            console.log(state.islogged)
         } 
     }, 
 })
