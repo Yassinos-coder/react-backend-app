@@ -6,11 +6,15 @@ import Signups from "../../modals/Signups";
 import {Link} from 'react-router-dom'
  
 const Signup = () => {
+  const passwd_input = React.createRef()
+  const cm_passwd_input = React.createRef()
   const [signup, setSignups] = useState(new Signups());
   const dispatch = useDispatch();
   const SignUp = () => {
     dispatch(createAccount({ accountInfo: signup }));
   };
+
+  
 
   return (
     <div className="signup-box">
@@ -44,6 +48,18 @@ const Signup = () => {
             name="lname"
             placeholder="ex: Doe"
           />
+          <label className="labels" htmlFor="lname">
+            Username
+          </label>
+          <input
+            onChange={(e) => {
+              setSignups({ ...signup, Username: e.target.value });
+            }}
+            className="inputs"
+            type="text"
+            name="username"
+            placeholder="ex: Doe101"
+          />
           <label className="labels" htmlFor="email">
             E-mail
           </label>
@@ -51,6 +67,7 @@ const Signup = () => {
             onChange={(e) => {
               setSignups({ ...signup, Email: e.target.value });
             }}
+            autoComplete="username"
             className="inputs"
             type="text"
             name="email"
@@ -61,6 +78,7 @@ const Signup = () => {
             Password
           </label>
           <input
+           ref={passwd_input}
             autoComplete="new-password"
             onChange={(e) => {
               setSignups({ ...signup, Password: e.target.value });
@@ -74,6 +92,8 @@ const Signup = () => {
             Confirm Password
           </label>
           <input
+            ref={cm_passwd_input}
+            autoComplete='new-password'
             className="inputs"
             type="password"
             name="passwd-cm"
