@@ -29,8 +29,8 @@ router.delete('/deleteTask/:task' , (req, res) =>{
     const filtered_tasks = tasks.filter((element) => element.task !== task_to_delete)
     tasks = filtered_tasks
     res.send(tasks)
-    console.log(filtered_tasks)
-    console.log(tasks)
+    // console.log(filtered_tasks)
+    // console.log(tasks)
 })
 
 

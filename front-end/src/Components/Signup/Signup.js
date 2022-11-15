@@ -20,6 +20,7 @@ const Signup = () => {
   return (
     <div className="signup-box">
       {/* Signup Box */}
+      <form>
         <div className="Signup-Box">
           <div className="title">
             <h1>Create You Account</h1>
@@ -114,6 +115,7 @@ const Signup = () => {
             SignUp
           </button>
         </div>
+      </form>
     </div>
   );
 };
