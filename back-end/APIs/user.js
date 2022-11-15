@@ -15,7 +15,6 @@ router.post('/AddAccount' ,(req,res) => {
         lastname: account_data.Lastname,
         email: account_data.Email
     })
-    console.log(account_data.Email)
     User.save()
 })
 
