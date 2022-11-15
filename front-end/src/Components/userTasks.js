@@ -8,9 +8,14 @@ const UserTasks = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Below is for Getting Username to pass to api in redux
+  const location = (window.location.href).split('/')  
+  const user_to_send_to_redux = location[4]
+
+
   useEffect(() => {
-    dispatch(getTasks());
-  }, [dispatch]);
+    dispatch(getTasks(user_to_send_to_redux));
+  }, [dispatch, user_to_send_to_redux]);
 
   const Tasks = useSelector((state) => state.Tasks.tasks);
   const [newTask, setnewTask] = useState(new Task());
@@ -51,7 +56,7 @@ const UserTasks = () => {
             className="btn-add-todo"
             type="button"
             onClick={() => {
-              dispatch(addTodo({ Task: newTask }));
+              dispatch(addTodo(user_to_send_to_redux, { Task: newTask }));
             }}
           >
             Add Todo
@@ -65,7 +70,7 @@ const UserTasks = () => {
                 className="btn-delete-task"
                   type="button"
                   onClick={() => {
-                    dispatch(deleteTodo({ taskToDelete: task.task }));
+                    dispatch(deleteTodo(user_to_send_to_redux, { taskToDelete: task.task }));
                   }}
                 >
                   Delete Task

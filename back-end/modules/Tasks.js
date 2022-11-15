@@ -2,19 +2,21 @@ const { mongoose } = require('mongoose')
 const db = require('mongoose')
 
 const task = db.Schema({
-    task: {
+    username : {
         type: String,
+        required: true
+    },
+    task: {
+        type: Array,
         required: true,
     },
     achieved: {
         type: String
     },
-    creation_date: {
+    creationDate: {
         type: String,
-        required: true
     }
 })
 
-const TaskModel = mongoose.model('UsersTasks', task)
-
+const TaskModel = mongoose.model('Users_Tasks', task)
 module.exports = TaskModel

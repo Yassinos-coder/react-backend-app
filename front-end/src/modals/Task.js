@@ -1,6 +1,9 @@
 class Task {
-    constructor (task="") {
-        this.task=task
+    constructor (username ="",task="",achieved="",creationDate="") {
+        this.task=task,
+        this.username = username,
+        this.achieved = achieved,
+        this.creationDate=creationDate,
     }
 }
 

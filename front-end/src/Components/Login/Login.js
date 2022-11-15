@@ -18,10 +18,12 @@ const Login = () => {
       passwd: passwd.current.value
     })
     axios.post('http://localhost:9000/Signin', credentials).then((res) => {
-      if (res.data === true) {
+      if (res.status) {
+        let username = res.data
         dispatch(loggedIN(true));
         localStorage.logged_in = true;
-        navigate("/UserTasks");
+        localStorage.setItem('username_bw',username)
+        navigate(`/UserTasks/${username}`);
       }else {
         return false
       }
