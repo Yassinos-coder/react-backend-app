@@ -18,14 +18,16 @@ const Login = () => {
       passwd: passwd.current.value
     })
     axios.post('http://localhost:9000/Signin', credentials).then((res) => {
-      if (res.status) {
+      if (res.data===false) {
+        alert('Wrong Username or Password!')
+        return false
+        
+      }else {
         let username = res.data
         dispatch(loggedIN(true));
         localStorage.logged_in = true;
         localStorage.setItem('username_bw',username)
         navigate(`/UserTasks/${username}`);
-      }else {
-        return false
       }
     }).catch(err=>{console.log(err.message)})
   }
@@ -66,10 +68,15 @@ const Login = () => {
               placeholder="Enter your password"
             />
             <div className="no-acct">
-            <Link className="a-crt-acct" to="/Signup">
-              <p>Create an account</p>
-            </Link>
+              <Link className="a-crt-acct" to="/Signup">
+                <p>Create an account</p>
+              </Link>
             </div>
+            <Link to="/">
+              <button className="btn-signin">
+                Home
+              </button>
+            </Link>
             <button
               onClick={() => {
                 Signin();

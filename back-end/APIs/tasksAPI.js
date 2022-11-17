@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const TaskModel = require('../modules/Tasks')
+const TaskModel = require('../modules/TasksDBModels')
 const router = Router ()
 
 

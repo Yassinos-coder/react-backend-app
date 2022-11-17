@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getTasks, addTodo, deleteTodo } from "../redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
-import Task from "../modals/Task";
+import Task from "../modals/TaskModal";
 import { useNavigate, Link } from "react-router-dom";
 import { loggedIN } from "../redux/loggedin-reducer";
 const UserTasks = () => {
@@ -49,7 +49,7 @@ const UserTasks = () => {
             type="text"
             placeholder="Enter a new task to add"
             onChange={(e) => {
-              setnewTask({ ...newTask, task: e.target.value });
+              setnewTask({ ...newTask, Task: e.target.value });
             }}
           />
           <button
@@ -70,7 +70,7 @@ const UserTasks = () => {
                 className="btn-delete-task"
                   type="button"
                   onClick={() => {
-                    dispatch(deleteTodo(user_to_send_to_redux, { taskToDelete: task.task }));
+                    dispatch(deleteTodo(user_to_send_to_redux, { taskToDelete: task.Task }));
                   }}
                 >
                   Delete Task

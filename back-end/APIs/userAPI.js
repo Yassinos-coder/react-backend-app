@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const UserModel = require('../modules/Users')
+const UserModel = require('../modules/UsersDBModels')
 
 const router = Router ()
 let userDoesExists;
@@ -31,9 +31,9 @@ router.post('/AddAccount' , async (req,res) => {
 router.post('/Signin', async (req,res)=> {
     let credentials = req.body
     try {
-    let user_existence_result = await UserModel.findOne({username: credentials.uname},{passwd: credentials.passwd})
+    let user_existence_result = await UserModel.findOne({username: credentials.uname,passwd: credentials.passwd})
     if (user_existence_result) {
-        res.status(200).send(credentials.uname)
+        res.send(credentials.uname)
         // console.log('Access Granted')
 
     } else {

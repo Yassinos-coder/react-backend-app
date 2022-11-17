@@ -10,7 +10,9 @@ import Signup from "./Components/Signup/Signup";
 
 function App() {
   const redux_state = useSelector((state) => state.Auth.islogged)
-  localStorage.setItem('logged_in', redux_state)
+  if (!localStorage.logged_in) {
+    localStorage.setItem('logged_in', redux_state)
+  }
   return (
     <>
       <div className="app">

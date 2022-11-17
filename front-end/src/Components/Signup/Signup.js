@@ -2,7 +2,7 @@ import './Signup.css'
 import React, { useState } from "react";
 import { createAccount } from "../../redux/reducer";
 import { useDispatch } from "react-redux";
-import Signups from "../../modals/Signups";
+import Signups from "../../modals/SignupsModal";
 import {Link} from 'react-router-dom'
  
 const Signup = () => {
