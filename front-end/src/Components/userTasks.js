@@ -67,10 +67,10 @@ const UserTasks = () => {
             Add Todo
           </button>
 
-          {Tasks.Task.map((task, index) => (
+          {Tasks.map((task, index) => (
             <>
               <div className="tasks">
-                <h3 key={index}> {task.task} |
+                <h3 key={index}> {task.Task} |
                 <button
                 className="btn-delete-task"
                   type="button"
