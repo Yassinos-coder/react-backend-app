@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios';
 
-export const getTasks = createAsyncThunk('Tasks/getTasks', async (username) => {
-    return axios.get(`http://localhost:9000/SendTasksList/${username}`)
+export const getTasks = createAsyncThunk('Tasks/getTasks', async (userid) => {
+    return axios.get(`http://localhost:9000/SendTasksList/${userid}`)
     .then((res) => {
         return res.data
     })
@@ -11,8 +11,8 @@ export const getTasks = createAsyncThunk('Tasks/getTasks', async (username) => {
     } )
 })
 
-export const addTodo = createAsyncThunk('Tasks/addTodo', async (username,{Task})=>{
-    return axios.post(`http://localhost:9000/addTodoToTasks/${username}` , Task)
+export const addTodo = createAsyncThunk('Tasks/addTodo', async ({userid, Task})=>{
+    return axios.post(`http://localhost:9000/addTodoToTasks/${userid}` , Task)
     .then(res =>{return res.data})
     .catch(err => {return err.data.message})
 })
@@ -41,6 +41,7 @@ const TaskSlice = createSlice({
     extraReducers : {
         [getTasks.fulfilled]: (state, action ) => {
             state.tasks = action.payload
+            console.log(state.tasks)
             state.status = "success"
         },
         [getTasks.rejected] : ( state, action ) => {

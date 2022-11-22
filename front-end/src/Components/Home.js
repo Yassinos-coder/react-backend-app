@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 const Home = () => {
-  const username = localStorage.username_bw
+
   return (
     <>
         <div className="Home">
@@ -12,7 +12,7 @@ const Home = () => {
                 <Link to='/Login'>
                   <button className='btn-acct'>Connect To Your Account</button>
                 </Link>
-                <Link to={`/UserTasks/${username}`}>
+                <Link to={`/UserTasks/${localStorage.userID}`}>
                   <button className='btn-dash'>Go To Your Dashboard</button>
                 </Link>
         </div>

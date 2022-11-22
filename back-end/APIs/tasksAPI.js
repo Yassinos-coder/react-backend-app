@@ -3,30 +3,30 @@ const TaskModel = require('../modules/TasksDBModels')
 const router = Router ()
 
 
-router.get('/SendTasksList/:username', async (req, res)=>{
-    let task_of_username = req.params.username
+router.get('/SendTasksList/:userid', async (req, res)=>{
+    let task_of_userid = req.params.userid
     try {    
-        const task_w_user = await TaskModel.find({task_of_usr:task_of_username})
+        const task_w_user = await TaskModel.find({user_id:task_of_userid})
         res.send(task_w_user)
     }catch(err) {console.error(err)}
 
 })
 
-router.post('/addTodoToTasks/:username', async (req, res)=> {
-    let task_of_username = req.params.username
-    const task_w_user = await TaskModel.find({task_of_usr:task_of_username})
+router.post('/addTodoToTasks/:userid', async (req, res)=> {
+    let task_of_userid = req.params.userid
+    const task_w_user = await TaskModel.find({user_id:task_of_userid})
     let TaskExists;
-    const task = req.body
-    console.log(task)
+    const Task = req.body.Task
+    console.log(Task)
     try{
-        let result = await TaskModel.findOne({task :task})
+        let result = await TaskModel.findOne({Task : Task})
         if (result) {
             TaskExists = true
             res.send('Task Already Exists')
             console.log('Task Already Exists')
         } else {
-            console.log(task_of_username)
-            const taskToadd = new TaskModel({task_of_usr: task_of_username ,task:task})
+            console.log(task_of_userid)
+            const taskToadd = new TaskModel({user_id: task_of_userid ,Task:Task})
             taskToadd.save()
             res.send(task_w_user)
         }

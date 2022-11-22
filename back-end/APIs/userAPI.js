@@ -32,9 +32,10 @@ router.post('/Signin', async (req,res)=> {
     let credentials = req.body
     try {
     let user_existence_result = await UserModel.findOne({username: credentials.uname,passwd: credentials.passwd})
+    let userData = await UserModel.findOne({username: credentials.uname})
     if (user_existence_result) {
-        res.send(credentials.uname)
-        // console.log('Access Granted')
+        res.send(userData._id)
+        console.log('Access Granted')
 
     } else {
         res.send(false)

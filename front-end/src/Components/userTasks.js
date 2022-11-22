@@ -9,13 +9,12 @@ const UserTasks = () => {
   const dispatch = useDispatch();
 
   // Below is for Getting Username to pass to api in redux
-  const location = (window.location.href).split('/')  
-  const user_to_send_to_redux = location[4]
+  const userid_to_send_to_redux = localStorage.userID
 
 
   useEffect(() => {
-    dispatch(getTasks(user_to_send_to_redux));
-  }, [dispatch, user_to_send_to_redux]);
+    dispatch(getTasks(userid_to_send_to_redux));
+  }, [dispatch, userid_to_send_to_redux]);
 
   const Tasks = useSelector((state) => state.Tasks.tasks);
   const [newTask, setnewTask] = useState(new Task());
@@ -26,8 +25,8 @@ const UserTasks = () => {
     localStorage.clear();
   };
   const userData_from_redux = useSelector((state) => state.Auth.userInfo)
-  localStorage.setItem('userData', 'userData Storage as Object')
-  localStorage.userData = JSON.stringify(userData_from_redux)
+  localStorage.setItem('userData_ls', 'userData Storage as Object')
+  localStorage.userData_ls = JSON.stringify(userData_from_redux)
 
 
   return (
@@ -62,13 +61,13 @@ const UserTasks = () => {
             className="btn-add-todo"
             type="button"
             onClick={() => {
-              dispatch(addTodo(user_to_send_to_redux, { Task: newTask }));
+              dispatch(addTodo({userid: userid_to_send_to_redux, Task: newTask }));
             }}
           >
             Add Todo
           </button>
 
-          {Tasks.map((task, index) => (
+          {Tasks.Task.map((task, index) => (
             <>
               <div className="tasks">
                 <h3 key={index}> {task.task} |
@@ -76,7 +75,7 @@ const UserTasks = () => {
                 className="btn-delete-task"
                   type="button"
                   onClick={() => {
-                    dispatch(deleteTodo(user_to_send_to_redux, { taskToDelete: task.Task }));
+                    dispatch(deleteTodo(userid_to_send_to_redux, { taskToDelete: task.Task }));
                   }}
                 >
                   Delete Task

@@ -13,7 +13,7 @@ const Logged = createSlice({
     name: 'Auth',
     initialState : {
         islogged : false,
-        userInfo: [],
+        userInfo: {},
         status: '',
         Error : ''
     },
@@ -26,6 +26,7 @@ const Logged = createSlice({
         [userData.fulfilled]: (state, action) => {
             state.userInfo = action.payload
             state.status = "Accepted"
+            localStorage.userID = state.userInfo._id
         },
         [userData.pending]: (state) => {
             state.status = "Pending"

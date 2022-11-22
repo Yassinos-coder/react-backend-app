@@ -1,20 +1,22 @@
-const { mongoose } = require('mongoose')
+const mongoose  = require('mongoose')
 const db = require('mongoose')
-
+const date = new Date().toLocaleString("fr-MA", {day : '2-digit', month: 'numeric',year:'numeric'})
 const task = db.Schema({
-    username : {
-        type: String,
+    user_id : {
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    task: {
+    Task: {
         type: String,
         required: true,
     },
     achieved: {
-        type: String
+        type: String,
+        default: false
     },
     creationDate: {
         type: String,
+        default : date
     }
 })
 

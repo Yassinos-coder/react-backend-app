@@ -1,10 +1,7 @@
 class Task {
   
-    constructor(Username = "", Task = "", Achieved ='' ,CreationDate = "") {
-      this.Username = Username
+    constructor(Task = "") {
       this.Task = Task
-      this.Achieved = Achieved
-      this.CreationDate = CreationDate
     }
   
   }

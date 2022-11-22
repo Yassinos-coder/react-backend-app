@@ -12,6 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
 
+
   const Signin = ()=> {
     let credentials = ({
       uname:uname.current.value,
@@ -21,16 +22,16 @@ const Login = () => {
       if (res.data===false) {
         alert('Wrong Username or Password!')
         return false
-        
       }else {
-        let username = res.data
+        let userid = res.data
+        console.log(userid)
+        dispatch(userData(credentials.uname))
         dispatch(loggedIN(true));
-        localStorage.logged_in = true;
-        localStorage.setItem('username_bw',username)
-        dispatch(userData(username))
-        navigate(`/UserTasks/${username}`);
+        localStorage.logged_in = true;  
+        console.log(userid)
+        navigate(`/UserTasks/${userid}`);
       }
-    }).catch(err=>{console.log(err.data.message)})
+    }).catch(err=>{console.log(err.message)})
   }
 
 
