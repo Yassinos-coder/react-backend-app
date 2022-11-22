@@ -23,7 +23,13 @@ const UserTasks = () => {
     localStorage.logged_in = false;
     dispatch(loggedIN(false));
     navigate("/");
+    localStorage.clear();
   };
+  const userData_from_redux = useSelector((state) => state.Auth.userInfo)
+  localStorage.setItem('userData', 'userData Storage as Object')
+  localStorage.userData = JSON.stringify(userData_from_redux)
+
+
   return (
     <>
       <div className="userTasks">

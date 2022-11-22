@@ -46,4 +46,12 @@ router.post('/Signin', async (req,res)=> {
 
 })
 
+router.get('/getUserData/:username' , async (req, res) =>{
+    let username_ls = req.params.username
+    try {  
+        const userData = await UserModel.findOne({username: username_ls})
+        res.send(userData)
+    }catch(err) {console.log(err)}
+})
+
 module.exports= router

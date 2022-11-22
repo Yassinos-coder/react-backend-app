@@ -17,6 +17,7 @@ router.post('/addTodoToTasks/:username', async (req, res)=> {
     const task_w_user = await TaskModel.find({task_of_usr:task_of_username})
     let TaskExists;
     const task = req.body
+    console.log(task)
     try{
         let result = await TaskModel.findOne({task :task})
         if (result) {
@@ -24,6 +25,7 @@ router.post('/addTodoToTasks/:username', async (req, res)=> {
             res.send('Task Already Exists')
             console.log('Task Already Exists')
         } else {
+            console.log(task_of_username)
             const taskToadd = new TaskModel({task_of_usr: task_of_username ,task:task})
             taskToadd.save()
             res.send(task_w_user)
@@ -33,9 +35,12 @@ router.post('/addTodoToTasks/:username', async (req, res)=> {
 
 })
 
-router.delete('/deleteTask/:username/:task' , (req, res) =>{
+router.delete('/deleteTask/:username/:task' , async (req, res) =>{
     const task_to_delete = req.params.task
-    const filtered_tasks = tasks.filter((element) => element.task !== task_to_delete)
+    const task_of_username = req.params.username
+    try {
+        let result = await TaskModel.findOne
+    }catch(err) {console.error(err)}
     tasks = filtered_tasks
     res.send(tasks)
     // console.log(filtered_tasks)

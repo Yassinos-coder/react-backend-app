@@ -7,7 +7,7 @@ const task = db.Schema({
         required: true
     },
     task: {
-        type: Array,
+        type: String,
         required: true,
     },
     achieved: {

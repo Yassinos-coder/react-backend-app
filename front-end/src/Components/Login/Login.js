@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-import { loggedIN } from "../../redux/loggedin-reducer";
+import { loggedIN, userData } from "../../redux/loggedin-reducer";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -27,9 +27,10 @@ const Login = () => {
         dispatch(loggedIN(true));
         localStorage.logged_in = true;
         localStorage.setItem('username_bw',username)
+        dispatch(userData(username))
         navigate(`/UserTasks/${username}`);
       }
-    }).catch(err=>{console.log(err.message)})
+    }).catch(err=>{console.log(err.data.message)})
   }
 
 
