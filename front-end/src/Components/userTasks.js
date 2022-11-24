@@ -13,8 +13,8 @@ const UserTasks = () => {
 
 
   useEffect(() => {
-    dispatch(getTasks(userid_to_send_to_redux));
-  }, [dispatch, userid_to_send_to_redux]);
+    dispatch(getTasks());
+  }, [dispatch]);
 
   const Tasks = useSelector((state) => state.Tasks.tasks);
   const [newTask, setnewTask] = useState(new Task());
@@ -75,7 +75,7 @@ const UserTasks = () => {
                 className="btn-delete-task"
                   type="button"
                   onClick={() => {
-                    dispatch(deleteTodo(userid_to_send_to_redux, { taskToDelete: task.Task }));
+                    dispatch(deleteTodo({userid: userid_to_send_to_redux, taskToDelete: task.Task }));
                   }}
                 >
                   Delete Task

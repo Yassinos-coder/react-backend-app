@@ -4,7 +4,7 @@ const date = new Date().toLocaleString("fr-MA", {day : '2-digit', month: 'numeri
 const task = db.Schema({
     user_id : {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        ref: 'users',
     },
     Task: {
         type: String,

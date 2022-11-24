@@ -2,10 +2,11 @@
 
 body  {
     font-family: 'Nunito Sans', sans-serif;
+    background-color: rgb(53, 50, 50);
+
 }
 
 .Home {
-    background-color: antiquewhite;
     margin: auto;
     width: 70%;
     height: 250px;

@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import axios from 'axios';
 
-export const getTasks = createAsyncThunk('Tasks/getTasks', async (userid) => {
-    return axios.get(`http://localhost:9000/SendTasksList/${userid}`)
+export const getTasks = createAsyncThunk('Tasks/getTasks', async () => {
+    return axios.get(`http://localhost:9000/SendTasksList/${localStorage.userID}`)
     .then((res) => {
         return res.data
     })
@@ -13,13 +13,13 @@ export const getTasks = createAsyncThunk('Tasks/getTasks', async (userid) => {
 
 export const addTodo = createAsyncThunk('Tasks/addTodo', async ({userid, Task})=>{
     return axios.post(`http://localhost:9000/addTodoToTasks/${userid}` , Task)
-    .then(res =>{return res.data})
+    .then(res => {return res.data})
     .catch(err => {return err.data.message})
 })
 
-export const deleteTodo = createAsyncThunk('Tasks/deleteTodo', async (username,{taskToDelete})=> {
-    return axios.delete(`http://localhost:9000/deleteTask/${username}/${taskToDelete}`)
-    .then(res => {return res.data})
+export const deleteTodo = createAsyncThunk('Tasks/deleteTodo', async ({ userid ,taskToDelete})=> {
+    return axios.delete(`http://localhost:9000/deleteTask/${userid}/${taskToDelete}`)
+    .then((res) => {return res.data})
     .catch(err => {return err.data.message})
 })
 
@@ -41,7 +41,6 @@ const TaskSlice = createSlice({
     extraReducers : {
         [getTasks.fulfilled]: (state, action ) => {
             state.tasks = action.payload
-            console.log(state.tasks)
             state.status = "success"
         },
         [getTasks.rejected] : ( state, action ) => {
