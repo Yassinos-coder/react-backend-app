@@ -1,12 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import { getTasks, addTodo, deleteTodo } from "../redux/reducer";
+import { getTasks, addTodo, deleteTodo, completeTask } from "../redux/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import Task from "../modals/TaskModal";
 import { useNavigate, Link } from "react-router-dom";
 import { loggedIN } from "../redux/loggedin-reducer";
+import '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/react-fontawesome'
+import {faSquareCheck,faSquare} from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const UserTasks = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const Tasks = useSelector((state) => state.Tasks.tasks);
+  const [newTask, setnewTask] = useState(new Task());
+  const [checkedIcon, setcheckedIcon] = useState(faSquare)
+  const achieved = useSelector((state) => state.Tasks.tasks.achieved);
+
 
   // Below is for Getting Username to pass to api in redux
   const userid_to_send_to_redux = localStorage.userID
@@ -14,16 +25,22 @@ const UserTasks = () => {
 
   useEffect(() => {
     dispatch(getTasks());
-  }, [dispatch]);
+    dispatch(completeTask({taskid: Tasks._id}))
+    if (achieved===false) {
+      setcheckedIcon(faSquare)
+    } else {
+      setcheckedIcon(faSquareCheck)
+    }
+  }, []);
 
-  const Tasks = useSelector((state) => state.Tasks.tasks);
-  const [newTask, setnewTask] = useState(new Task());
+
   const signout = () => {
     localStorage.logged_in = false;
     dispatch(loggedIN(false));
     navigate("/");
     localStorage.clear();
   };
+
   const userData_from_redux = useSelector((state) => state.Auth.userInfo)
   localStorage.setItem('userData_ls', 'userData Storage as Object')
   localStorage.userData_ls = JSON.stringify(userData_from_redux)
@@ -71,6 +88,7 @@ const UserTasks = () => {
             <>
               <div className="tasks">
                 <h3 key={index}> {task.Task} |
+                <FontAwesomeIcon style={{paddingLeft:'1%', paddingRight:'1%'}} icon={checkedIcon}/>
                 <button
                 className="btn-delete-task"
                   type="button"

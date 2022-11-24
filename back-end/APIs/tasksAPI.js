@@ -47,6 +47,9 @@ router.delete('/deleteTask/:userid/:task' , async (req, res) =>{
     }catch(err) {console.error(err)}
 })
 
+router.post('/achievementOfTask/:taskid', async (req,res) => {
+    const task_id = req.params.taskid
+})
 
 
 

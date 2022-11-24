@@ -11,7 +11,7 @@ const task = db.Schema({
         required: true,
     },
     achieved: {
-        type: String,
+        type: Boolean,
         default: false
     },
     creationDate: {

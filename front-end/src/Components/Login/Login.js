@@ -24,11 +24,9 @@ const Login = () => {
         return false
       }else {
         let userid = res.data
-        console.log(userid)
         dispatch(userData(credentials.uname))
         dispatch(loggedIN(true));
         localStorage.logged_in = true;  
-        console.log(userid)
         navigate(`/UserTasks/${userid}`);
       }
     }).catch(err=>{console.log(err.message)})

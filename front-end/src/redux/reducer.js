@@ -30,6 +30,12 @@ export const createAccount = createAsyncThunk('accounts/createAccount', async({a
 
 })
 
+export const completeTask = createAsyncThunk('Tasks/completeTask', async ({taskid}) =>{
+    return axios.post(`http://localhost:9000/achievementOfTask/${taskid}`)
+    .then(res => {return res.data})
+    .catch(err => {return err.message})
+})
+
 const TaskSlice = createSlice({
     name : "Tasks", 
     initialState : {
@@ -37,11 +43,14 @@ const TaskSlice = createSlice({
         status:"",
         Error: "",
     },
-    reducers:{}, 
+    reducers:{
+    }, 
     extraReducers : {
         [getTasks.fulfilled]: (state, action ) => {
             state.tasks = action.payload
             state.status = "success"
+            console.log(state.tasks)
+
         },
         [getTasks.rejected] : ( state, action ) => {
             state.Error = action.payload
